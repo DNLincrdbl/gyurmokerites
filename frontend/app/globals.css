@@ -11,6 +11,11 @@
 
 html { scroll-behavior: smooth; }
 
+html, body {
+  max-width: 100%;
+  overflow-x: clip;
+}
+
 body {
   margin: 0;
   background: #fff;
@@ -19,6 +24,7 @@ body {
   font-size: 14px;
   line-height: 1.5;
   text-rendering: optimizeLegibility;
+  overscroll-behavior-x: none;
 }
 
 main { padding-top: 56px; }
@@ -160,6 +166,42 @@ button, input, textarea, select { font: inherit; color: inherit; }
 
 .account-btn:hover,
 .account-btn[aria-expanded="true"] { background: rgba(23, 26, 32, 0.06); }
+
+.nav-burger {
+  display: none;
+  position: relative;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+}
+
+.nav-burger span {
+  position: absolute;
+  left: 12px;
+  width: 16px;
+  height: 1.5px;
+  background: #171a20;
+  transition: transform 0.28s ease, opacity 0.2s ease, top 0.28s ease;
+}
+
+.nav-burger span:nth-child(1) { top: 15px; }
+.nav-burger span:nth-child(2) { top: 19.25px; }
+.nav-burger span:nth-child(3) { top: 23.5px; }
+
+.nav-burger.is-open span:nth-child(1) { top: 19.25px; transform: rotate(45deg); }
+.nav-burger.is-open span:nth-child(2) { opacity: 0; }
+.nav-burger.is-open span:nth-child(3) { top: 19.25px; transform: rotate(-45deg); }
+
+.nav-burger:hover,
+.nav-burger[aria-expanded="true"] { background: rgba(23, 26, 32, 0.06); }
+
+.nav-menu {
+  display: none;
+}
 
 .account-icon {
   width: 24px;
@@ -1024,6 +1066,7 @@ input:focus, textarea:focus, select:focus {
 .footer-credit a:hover { color: #fff; }
 
 .footer-giant {
+  max-width: 100%;
   overflow: hidden;
   line-height: 0.72;
   pointer-events: none;
@@ -1116,9 +1159,49 @@ input:focus, textarea:focus, select:focus {
   .index-row,
   .service-list .index-row { grid-template-columns: 1fr; gap: 0.15rem; }
 
-  .nav-inner { width: calc(100% - 1rem); }
+  .nav-inner {
+    width: calc(100% - 1rem);
+    grid-template-columns: 1fr auto;
+  }
 
   .nav-links { display: none; }
+
+  .nav-order { white-space: nowrap; }
+
+  .nav-burger { display: block; }
+
+  .nav-menu {
+    display: grid;
+    position: absolute;
+    top: 56px;
+    right: 0;
+    left: 0;
+    grid-template-rows: 0fr;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.98);
+    transition: grid-template-rows 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .nav-menu.is-open { grid-template-rows: 1fr; }
+
+  .nav-menu nav {
+    min-height: 0;
+    overflow: hidden;
+    display: grid;
+    padding: 0 1.15rem;
+  }
+
+  .nav-menu a {
+    padding: 0.9rem 0;
+    border-top: 1px solid rgba(23, 26, 32, 0.08);
+    color: #171a20;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    text-decoration: none;
+  }
+
+  input, textarea, select { font-size: 16px; }
 
   .hero { min-height: 100svh; }
 
@@ -1302,9 +1385,11 @@ input:focus, textarea:focus, select:focus {
   display: flex;
   gap: 14px;
   overflow-x: auto;
+  overscroll-behavior-x: contain;
   scroll-snap-type: x mandatory;
   padding: 0 calc((100% - var(--card)) / 2) 6px;
   scrollbar-width: none;
+  touch-action: pan-x pan-y;
 }
 
 .slider-scroller::-webkit-scrollbar { display: none; }
@@ -1679,6 +1764,7 @@ html.intro-lock body { overflow: hidden; }
   position: fixed;
   inset: 0;
   z-index: 60;
+  overflow: hidden;
   background: #f2f2f2;
   pointer-events: auto;
 }
@@ -1689,6 +1775,7 @@ html.intro-lock body { overflow: hidden; }
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
 }
 
 .intro-pane {
@@ -1768,12 +1855,16 @@ html.intro-lock body { overflow: hidden; }
   .account-kind-pane,
   .account-form,
   .faq-answer,
-  .faq-item p { transition: none; }
+  .faq-item p,
+  .nav-menu,
+  .nav-burger span { transition: none; }
   .reveal { opacity: 1; transform: none; }
   .bento-card img, .pill { transition: none; }
 }
 
 @media (max-width: 980px) {
+  .intro { display: none; }
+
   .bento { grid-template-columns: 1fr 1fr; grid-auto-rows: 180px; }
   .bento-a, .bento-b, .bento-c, .bento-i { grid-column: span 2; }
   .bento-a { grid-row: span 2; }

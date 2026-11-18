@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 
 const CUT = 3;
+const WIDE = "(min-width: 981px)";
 
 export function IntroGate() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -10,16 +11,19 @@ export function IntroGate() {
   const [still, setStill] = useState("");
 
   useEffect(() => {
-    const html = document.documentElement;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce) {
+    const desktop = window.matchMedia(WIDE).matches;
+    if (reduce || !desktop) {
       setPhase("gone");
       return;
     }
-
-    html.classList.add("intro-lock");
     const video = videoRef.current;
     if (!video) return;
+
+    const html = document.documentElement;
+    html.classList.add("intro-lock");
+    video.src = "/nyito.mp4";
+    video.load();
 
     let raf = 0;
     let dead = false;
@@ -82,6 +86,7 @@ export function IntroGate() {
       window.clearTimeout(giveUp);
       video.removeEventListener("canplay", start);
       video.removeEventListener("error", reveal);
+      html.classList.remove("intro-lock");
     };
   }, []);
 
@@ -100,14 +105,7 @@ export function IntroGate() {
   return (
     <div className={`intro${phase === "open" ? " intro-open" : ""}`} aria-hidden>
       {phase === "play" ? (
-        <video
-          ref={videoRef}
-          className="intro-video"
-          src="/nyito.mp4"
-          muted
-          playsInline
-          preload="auto"
-        />
+        <video ref={videoRef} className="intro-video" muted playsInline preload="auto" />
       ) : (
         <>
           <div className="intro-pane intro-left" onAnimationEnd={() => setPhase("gone")}>
