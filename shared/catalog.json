@@ -1,0 +1,128 @@
+{
+  "priceNote": "Irányár. A kész méretek acél borítással, gyártásra, automatika nélkül értendők. Az egyedi nyílás ára a visszaigazolásban van.",
+  "workshop": {
+    "weeklyCapacity": 12,
+    "leadWeeks": 1,
+    "horizonWeeks": 8
+  },
+  "claddings": [
+    {
+      "id": "acel",
+      "name": "Acél",
+      "detail": "Porszórt lemez vagy lézervágott mező. Ez az alapár.",
+      "factor": 1
+    },
+    {
+      "id": "aluminium",
+      "name": "Alumínium",
+      "detail": "Lamellás vagy zárt mező, könnyebb szárny.",
+      "factor": 1.1
+    },
+    {
+      "id": "wpc",
+      "name": "WPC",
+      "detail": "Fa hatás, festés nélkül.",
+      "factor": 1.2
+    }
+  ],
+  "fulfillment": [
+    {
+      "id": "anyag",
+      "name": "Csak anyag",
+      "detail": "Tok, szárny és vasalat előkészítve. A helyszíni munkát a saját szerelő végzi.",
+      "factor": 0.8,
+      "capacity": 1
+    },
+    {
+      "id": "gyartas",
+      "name": "Gyártás",
+      "detail": "Legyártjuk, a műhelyben átvehető. Szerelés nincs benne, a hét kapacitásából foglal.",
+      "factor": 1,
+      "capacity": 3
+    },
+    {
+      "id": "komplett",
+      "name": "Gyártás és szerelés",
+      "detail": "Legyártjuk és a helyére tesszük. Csongrád megyében a saját csapat, távolabb egyeztetéssel.",
+      "factor": 1,
+      "capacity": 4
+    }
+  ],
+  "products": [
+    {
+      "id": "szemely",
+      "slug": "szemelybejaro",
+      "name": "Személybejáró",
+      "summary": "Gyalogos kapu a kerítés vonalában, három kész nyílásban.",
+      "body": "A személybejáró a kerítés része, nem egy leszűkített autókapu. A tok, a zsanér és a zár egy szerkezet. Három nyílásra van kész ár: egy méter, százhúsz és másfél méter. Ha a meglévő oszlopköz más, egyedi méretként ugyanabból a műhelyhétből foglalható, az árat a nyílás és a borítás után mondjuk meg.",
+      "image": "/studio/aluminium.jpg",
+      "installFee": 90000,
+      "sizes": [
+        { "id": "s", "name": "S", "width": 100, "height": 160, "price": 268000 },
+        { "id": "m", "name": "M", "width": 120, "height": 170, "price": 318000 },
+        { "id": "l", "name": "L", "width": 150, "height": 190, "price": 376000 }
+      ],
+      "automation": [
+        { "id": "kompakt", "name": "Kompakt kar", "detail": "1,2 m szárnyig", "price": 168000 },
+        { "id": "kozepes", "name": "Közepes kar", "detail": "1,5 m szárnyig, lassú zárás", "price": 214000 }
+      ]
+    },
+    {
+      "id": "ketszarnyu",
+      "slug": "ketszarnyu",
+      "name": "Kétszárnyú kapu",
+      "summary": "Két szárny, ha a kapu előtt van hely kinyílni.",
+      "body": "A kétszárnyú kapu a behajtó klasszikus szerkezete. Akkor érdemes, ha az ívnek van helye az udvarban vagy az utcán, és a szárnyakat nem kell a kerítés mellé eltolni. Három nyílásméret kész áron. Automatikával a két szárny együtt mozog. A borítás acél, alumínium vagy WPC, ugyanarra a vázra.",
+      "image": "/studio/ketszarnyu.jpg",
+      "installFee": 140000,
+      "sizes": [
+        { "id": "s", "name": "S", "width": 300, "height": 160, "price": 620000 },
+        { "id": "m", "name": "M", "width": 350, "height": 170, "price": 748000 },
+        { "id": "l", "name": "L", "width": 400, "height": 180, "price": 864000 }
+      ],
+      "automation": [
+        { "id": "szett-s", "name": "Szett S", "detail": "3,2 m nyílásig", "price": 248000 },
+        { "id": "szett-m", "name": "Szett M", "detail": "4 m nyílásig", "price": 312000 },
+        { "id": "szett-l", "name": "Szett L", "detail": "5 m nyílásig", "price": 386000 }
+      ]
+    },
+    {
+      "id": "tolo",
+      "slug": "tolokapu",
+      "name": "Tolókapu",
+      "summary": "A szárny a kerítés mentén fut, sínen. A kapu elé nem kell ív.",
+      "body": "A tolókapu akkor való, ha a behajtó előtt nincs hely a szárny ívének. A sín a betonozott fogadóba kerül, a szárny azon gurul. Három kész hossz van, a hosszabb vagy ferde nyílás egyedi gyártás. Az automatika a szárny súlyához igazodik: 400, 600 vagy 1000 kg-os gép.",
+      "image": "/studio/tolo.jpg",
+      "installFee": 160000,
+      "sizes": [
+        { "id": "s", "name": "S", "width": 350, "height": 160, "price": 710000 },
+        { "id": "m", "name": "M", "width": 400, "height": 170, "price": 842000 },
+        { "id": "l", "name": "L", "width": 500, "height": 180, "price": 986000 }
+      ],
+      "automation": [
+        { "id": "400", "name": "400 kg", "detail": "Rövidebb, könnyebb szárny", "price": 236000 },
+        { "id": "600", "name": "600 kg", "detail": "A szokásos behajtó", "price": 298000 },
+        { "id": "1000", "name": "1000 kg", "detail": "Hosszú vagy sűrűn borított szárny", "price": 384000 }
+      ]
+    },
+    {
+      "id": "uszo",
+      "slug": "uszokapu",
+      "name": "Úszókapu",
+      "summary": "Konzolos szárny, sín nélkül a behajtóban.",
+      "body": "Az úszókapu a saját szerkezetén fut, a behajtó betonjába nem kerül sín. Hó, murva és egyenetlen talaj nem állítja meg a szárnyat. Nehezebb gyártmány, több műhelyidő, ezért a kapacitásból is többet kér. Három kész nyílás van árral, a 6 méter fölötti vagy lejtős bejárat egyedi ajánlat, a hetet így is le lehet foglalni.",
+      "image": "/munkaink/uszokapuk/2.jpg",
+      "installFee": 190000,
+      "sizes": [
+        { "id": "s", "name": "S", "width": 400, "height": 160, "price": 890000 },
+        { "id": "m", "name": "M", "width": 500, "height": 170, "price": 1080000 },
+        { "id": "l", "name": "L", "width": 600, "height": 180, "price": 1260000 }
+      ],
+      "automation": [
+        { "id": "400", "name": "400 kg", "detail": "Rövidebb úszó szárny", "price": 268000 },
+        { "id": "800", "name": "800 kg", "detail": "A szokásos úszókapu", "price": 348000 },
+        { "id": "1200", "name": "1200 kg", "detail": "Hosszú, zárt borítás", "price": 452000 }
+      ]
+    }
+  ]
+}
